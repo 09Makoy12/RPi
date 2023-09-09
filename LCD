@@ -1,34 +1,9 @@
-import RPi.GPIO as GPIO 
 import time
-from RPLCD.gpio import CharLCD
+from RPLCD import CharLCD
+lcd = CharLCD(cols=16, rows=2, pin_rs=37, pin_e=35, pins_data=[33, 31, 29, 23])
 
-# Configure the LCD
-lcd = (pin_rs = 19, pin_rw = None, pin_e = 16, pins_data = [21,18,23,24], 
-numbering_mode = GPIO.BOARD)
-
-# Create a variable ‘number’ 
-number = 0
-
-# Main loop
-while(True):
-# Increment the number and then print it to the LCD number = number + 1
-lcd.clear()
-lcd.write_string(“Count: “+ str(number))
-time.sleep(1) 
-
-lcd.close() 
-GPIO.cleanup()
-
-import RPi.GPIO as GPIO
-import LiquidCrystalPi
-import time as time
-
-GPIO.setmode(GPIO.BOARD)
-GPIO.setwarnings(False)
-
-LCD = LiquidCrystalPi.LCD(29, 31, 33, 35, 37, 38)
-
-LCD.begin(16,2)
-
-time.sleep(0.5)
-LCD.write("Hello World")
+while True:
+    lcd.write_string(u"Hello world!")
+    time.sleep(1)
+    lcd.clear()
+    time.sleep(1)
